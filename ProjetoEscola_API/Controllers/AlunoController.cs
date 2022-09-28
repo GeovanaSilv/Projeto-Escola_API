@@ -77,8 +77,8 @@ namespace ProjetoEscola_API.Controllers
        }
 
 
-       [HttpDelete("{AlunoRa}")]
-       public async Task <ActionResult> delete(string AlunoId){
+       [HttpDelete("{AlunoId}")]
+       public async Task <ActionResult> delete(int  AlunoId){
         try{
             var aluno = await _context.Aluno.FindAsync(AlunoId);
             if(aluno==null){
