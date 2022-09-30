@@ -1,68 +1,74 @@
 
-/*import axios from 'axios';
+import axios from 'axios';
 import './CrudCurso.css';
 import Main from '../template/Main';
-import { useState } from 'react';
-//import { resolveTo } from "react-router/lib/router";
+import { useEffect, useState } from 'react';
+
 
 const title ="Cadastro de Curso";
 
 const urlAPI ="http://localhost:5278/api/Curso";
 
 const initialState={
-    curso:{nomeCurso:'',codCurso:0,periodo:''},
+    curso:{id:0, nomeCurso:'',codCurso:0,periodo:''},
     lista:[]
 }
 
 export default function CrudCurso(){
 
-const[setCurso] = useState();
+const[curso ,setCurso] = useState(initialState.curso);
+const[lista , setLista] = useState(initialState.lista);
 
+useEffect(()=>{
+    axios(urlAPI).then(resp =>{
+        setLista({lista: resp.data})
+    })
+},  [curso])
    function limpar(){
         setCurso({curso : initialState.curso});
        }
 
       function salvar(){
-        const curso = this.setCurso.curso;
+        const curso = setCurso.curso;
         curso.codCurso = Number(curso.codCurso);
         const metodo = curso.id? 'put':'post';
         const url = curso.id ? `${urlAPI}/${curso.id}`: urlAPI;
      
         axios[metodo](url,curso)
         .then(resp =>{
-            const lista = this.getListaAtualizada(resp.data)
+            const lista = getListaAtualizada(resp.data)
           setCurso({curso:initialState.curso,lista})
         })     
     }
  function   getListaAtualizada(curso, add = true){
-        const lista = this.setCurso.lista.filter(a => a.id !== curso.id);
+        const lista = setLista.lista.filter(a => a.id !== curso.id);
         if(add) lista.unshift(curso);
         return lista;
        }
 
 
     function   atualizaCampo(evento){
-        const curso  = {...this.setCurso.curso};
+        const curso  = {...setCurso.curso};
     
         curso[evento.target.name]= evento.target.value;
     
-        this.setCurso({curso});
+        setCurso({curso});
        }
 
 
      function  carregar(curso) {
-        this.setCurso({curso})
+        setCurso({curso})
            const url = urlAPI + "/" + curso.id;
            if (window.confirm("Confirma alteração curso: " + curso.codCurso)) {
            console.log("entrou no confirm");
            axios['PUT'](url, curso)
            .then(resp => {
-           const lista = this.getListaAtualizada(curso, false)
-           this.setCurso({ curso: initialState.curso, lista })
+           const lista = getListaAtualizada(curso, false)
+           setCurso({ curso: initialState.curso, lista })
        })
     
     }
-    this.atualizaCampo(curso);
+    atualizaCampo(curso);
     }
  function remover(curso){
     const url = urlAPI + "/"+ curso.id;
@@ -71,8 +77,8 @@ const[setCurso] = useState();
 
         axios['delete'](url,curso)
         .then(resp =>{
-            const lista = this.getListaAtualizada(curso,false)
-            this.setCurso({curso:initialState.curso,lista})
+            const lista = getListaAtualizada(curso,false)
+            setCurso({curso:initialState.curso,lista})
         })
     }
   }
@@ -87,7 +93,7 @@ const[setCurso] = useState();
             className ="form-input"
             name = "nome"
             value={setCurso.curso.nomeCurso}
-            onChange={e =>this.atualizaCampo(e)}              
+            onChange={e =>atualizaCampo(e)}              
             />
 
            <label>Periodo:</label>
@@ -98,7 +104,7 @@ const[setCurso] = useState();
             className="form-input"
             name="periodo" 
             value={setCurso.curso.periodo}
-            onChange={e => this.atualizaCampo(e)}
+            onChange={e => atualizaCampo(e)}
            />
            <label>Código do Curso</label>
            <input
@@ -108,14 +114,14 @@ const[setCurso] = useState();
              className="form-input"
              name="codCurso"
              value={setCurso.curso.codCurso}
-             onChange={e => this.atualizaCampo(e)}
+             onChange={e => atualizaCampo(e)}
              />
             <button className="btnSalvar"
-            onClick={e => this.salvar(e)}
+            onClick={e => salvar(e)}
             >Salvar 
             </button>
             <button className="btnCancelar"
-            onClick={e => this.limpar(e)}>
+            onClick={e => limpar(e)}>
                 Cancelar
             </button>
              </div>
@@ -133,19 +139,19 @@ const renderTable =()  =>{
            </tr>
        </thead>
        <tbody>
-         {this.setCurso.lista.map(
+         {setLista.lista.map(
              (curso) =>
              <tr key={curso.id}>
                  <td>{curso.nome}</td>
                  <td>{curso.periodo}</td>
                  <td>{curso.codCurso}</td>
                   <td>
-                    <button onClick={() => this.carregar(curso)}>
+                    <button onClick={() => carregar(curso)}>
                         Alterar
                     </button>
                   </td>
                   <td>
-                    <button onClick={() =>this.remover(curso)}>
+                    <button onClick={() =>remover(curso)}>
                         Remover
                     </button>
                   </td>
@@ -157,13 +163,12 @@ const renderTable =()  =>{
     </div>
     )
 }
-} 
-  const render  = ()=>{
     return(
     <Main title={title}>
-        {this.renderForm()}
-       {this.renderTable()}
+        {renderForm()}
+       {renderTable()}
         </Main>
     )
-}
-*/
+
+} 
+  
