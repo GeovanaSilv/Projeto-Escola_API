@@ -1,5 +1,5 @@
 
-import axios from 'axios';
+/*import axios from 'axios';
 import './CrudCurso.css';
 import Main from '../template/Main';
 import { useState } from 'react';
@@ -166,3 +166,4 @@ const renderTable =()  =>{
         </Main>
     )
 }
+*/
