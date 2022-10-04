@@ -11,66 +11,57 @@ const urlAPI ="http://localhost:5278/api/Curso";
 
 const initialState={
     curso:{id:0, nomeCurso:'',codCurso:0,periodo:''},
-    lista:[]
+   lista:[]
 }
 
-export default function CrudCurso(){
+export default function CrudCurso(props){
 
 const[curso ,setCurso] = useState(initialState.curso);
 const[lista , setLista] = useState(initialState.lista);
 
+
 useEffect(()=>{
     axios(urlAPI).then(resp =>{
-        setLista({lista: resp.data})
+        setLista(resp.data)
+      
     })
 },  [curso])
-   function limpar(){
+   const limpar = ()=>{
         setCurso({curso : initialState.curso});
        }
 
-      function salvar(){
-        const curso = setCurso.curso;
-        curso.codCurso = Number(curso.codCurso);
+       const  atualizaCampo = evento=>{
+        const  {name,value} = evento.target
+
+        setCurso({...curso,
+            [name]:value
+        })
+        console.log(setCurso)
+       }
+    function salvar (){
         const metodo = curso.id? 'put':'post';
-        const url = curso.id ? `${urlAPI}/${curso.id}`: urlAPI;
+        const url = curso.id ? `${urlAPI}/${curso.id}`: urlAPI
+        curso.codCurso = Number(curso.codCurso);
      
         axios[metodo](url,curso)
-        .then(resp =>{
+        .then((resp) =>{
             const lista = getListaAtualizada(resp.data)
           setCurso({curso:initialState.curso,lista})
+          setLista(lista)
         })     
     }
- function   getListaAtualizada(curso, add = true){
-        const lista = setLista.lista.filter(a => a.id !== curso.id);
-        if(add) lista.unshift(curso);
-        return lista;
+const  getListaAtualizada = (curso, add = true)=> {
+      const   listas = lista.filter(a => a.id !== curso.id);
+        if(add) listas.unshift(curso);
+        return listas;
        }
 
-
-    function   atualizaCampo(evento){
-        const curso  = {...setCurso.curso};
-    
-        curso[evento.target.name]= evento.target.value;
-    
-        setCurso({curso});
-       }
-
-
-     function  carregar(curso) {
-        setCurso({curso})
-           const url = urlAPI + "/" + curso.id;
-           if (window.confirm("Confirma alteração curso: " + curso.codCurso)) {
-           console.log("entrou no confirm");
-           axios['PUT'](url, curso)
-           .then(resp => {
-           const lista = getListaAtualizada(curso, false)
-           setCurso({ curso: initialState.curso, lista })
-       })
-    
+     const  carregar= (curso)=>{
+       setCurso(curso)
+       
     }
-    atualizaCampo(curso);
-    }
- function remover(curso){
+    
+ const remover = (curso)=>{
     const url = urlAPI + "/"+ curso.id;
     if(window.confirm("Confirma remoção do curso:" + curso.nomeCurso)){
         console.log("entrou no confirm");
@@ -92,7 +83,7 @@ useEffect(()=>{
             placeholder ="Nome do Curso"
             className ="form-input"
             name = "nome"
-            value={setCurso.curso.nomeCurso}
+            value={curso.nomeCurso}
             onChange={e =>atualizaCampo(e)}              
             />
 
@@ -103,7 +94,7 @@ useEffect(()=>{
             placeholder="Periodo do curso"
             className="form-input"
             name="periodo" 
-            value={setCurso.curso.periodo}
+            value={curso.periodo}
             onChange={e => atualizaCampo(e)}
            />
            <label>Código do Curso</label>
@@ -113,14 +104,14 @@ useEffect(()=>{
              placeholder="0"
              className="form-input"
              name="codCurso"
-             value={setCurso.curso.codCurso}
+             value={curso.codCurso}
              onChange={e => atualizaCampo(e)}
              />
-            <button className="btnSalvar"
+            <button className="BtnSalvar"
             onClick={e => salvar(e)}
             >Salvar 
             </button>
-            <button className="btnCancelar"
+            <button className="BtnCancelar"
             onClick={e => limpar(e)}>
                 Cancelar
             </button>
@@ -139,10 +130,10 @@ const renderTable =()  =>{
            </tr>
        </thead>
        <tbody>
-         {setLista.lista.map(
+         {lista.map(
              (curso) =>
              <tr key={curso.id}>
-                 <td>{curso.nome}</td>
+                 <td>{curso.nomeCurso}</td>
                  <td>{curso.periodo}</td>
                  <td>{curso.codCurso}</td>
                   <td>
