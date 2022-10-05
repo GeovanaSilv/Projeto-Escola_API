@@ -76,7 +76,7 @@ this.atualizaCampo(aluno);
 
     renderForm(){
         return(
-            <div  className="inclui-container">
+            <div  className="inclui-alunos">
               <label> RA: </label>
               <input
                type ="text"
@@ -124,7 +124,7 @@ this.atualizaCampo(aluno);
    <div className="listagem">
        <table className="listaAlunos"id ="tblListaAlunos">
            <thead>
-               <tr className="cabecTabela">
+               <tr className="Cabectabela">
           <th className="tabTituloRa">Ra</th>
           <th className="tabTituloNome">Nome</th>
           <th className="tabTituloCurso">Curso</th>                  
@@ -138,12 +138,12 @@ this.atualizaCampo(aluno);
                      <td>{aluno.nome}</td>
                      <td>{aluno.codCurso}</td>
                       <td>
-                        <button onClick={() => this.carregar(aluno)}>
+                        <button className="btnAltera"  onClick={() => this.carregar(aluno)}>
                             Alterar
                         </button>
                       </td>
                       <td>
-                        <button onClick={() =>this.remover(aluno)}>
+                        <button  className= 'btnRemove'onClick={() =>this.remover(aluno)}>
                             Remover
                         </button>
                       </td>

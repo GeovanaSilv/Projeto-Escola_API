@@ -4,7 +4,7 @@ div.content{
     margin: auto;
 }
 main > div{
-    background-color:#fff;
-    box-shadow: 0px 0px 15px #0004;
+    background-color:rgb(227, 195, 195);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.267);
     padding: 20px;
 }

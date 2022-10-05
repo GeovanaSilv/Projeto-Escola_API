@@ -1,14 +1,20 @@
+
+
 .tituloListagem{
     margin-left: 20px;
+    
+}
+.listagem{
+    background-color: rgb(236, 247, 247);
 }
 
 .listaAlunos{
     margin-left: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.cabecTabela{
-    color: white;
-    background-color: black;
+.Cabectabela{
+    color: rgb(0, 0, 0);
+    background-color: rgb(159, 172, 219);
     font-size: 20px;
     text-align: left;
 }
@@ -31,14 +37,14 @@ input[type=number]{
     padding: 12px;
     width: 50px;
 }
-.inclui-container{
+.inclui-alunos{
     margin: 20px;
     border-radius: 5px;
-    background-color: #beb9b9;
+    background-color: #b1daf0;
     padding: 20px;
 }
 .btnSalvar{
-    background-color: lightblue;
+    background-color: rgb(127, 147, 241);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
@@ -46,7 +52,7 @@ input[type=number]{
     margin:5px 5px 5px 30px;
 }
 .btnCancelar{
-    background-color: gainsboro;
+    background-color:rgb(127, 147, 241);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
@@ -59,22 +65,24 @@ label{
 .tituloCadastro{
     margin-left: 30px;
 }
-.btnSalvar{
-    background-color: lightblue;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin:5px 5px 5px 30px;
+
+label{
+    padding: 10px;
 }
-.btnCancelar{
-    background-color:gainsboro;
+.btnAltera{
+    background-color:rgb(127, 147, 241);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin:5px;
 }
-label{
-    padding: 10px;
+
+.btnRemove{
+    background-color:rgb(127, 147, 241);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin:5px;
 }
