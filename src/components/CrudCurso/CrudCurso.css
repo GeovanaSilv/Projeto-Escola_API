@@ -35,19 +35,21 @@ input[type=number]{
 .inclui-container{
     margin: 20px;
     border-radius: 5px;
-    background-color: #beb9b9;
+    background-color: #c7b7e7;
     padding: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 .BtnSalvar{
-    background-color: rgb(190, 151, 240);
+    background-color: rgb(154, 174, 255);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin:5px 5px 5px 30px;
+
 }
 .BtnCancelar{
-    background-color: rgb(126, 111, 214);
+    background-color: rgb(154, 174, 255);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
@@ -60,22 +62,24 @@ label{
 .tituloCadastro{
     margin-left: 30px;
 }
-.btnSalvar{
-    background-color: lightblue;
+
+
+label{
+    padding: 10px;
+}
+.btnAlterar{
+    background-color: rgb(126, 111, 214);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin:5px 5px 5px 30px;
 }
-.btnCancelar{
-    background-color:gainsboro;
+.btnRemover{
+    background-color: rgb(126, 111, 214);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin:5px;
-}
-label{
-    padding: 10px;
+    margin:5px 5px 5px 30px;
 }

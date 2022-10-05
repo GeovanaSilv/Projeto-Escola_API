@@ -42,6 +42,7 @@ namespace ProjetoEscola_API.Controllers
             if(await _context.SaveChangesAsync()==1)
           {
              //return Ok();
+               return Created($"/api/curso/{model.codCurso}",model);
           
               
          } 

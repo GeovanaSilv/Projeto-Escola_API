@@ -21,12 +21,15 @@ const[lista , setLista] = useState(initialState.lista);
 
 
 useEffect(()=>{
+    
     axios(urlAPI).then(resp =>{
         setLista(resp.data)
       
     })
-},  [curso])
-   const limpar = ()=>{
+},[curso])
+
+
+   function limpar (){
         setCurso({curso : initialState.curso});
        }
 
@@ -36,21 +39,22 @@ useEffect(()=>{
         setCurso({...curso,
             [name]:value
         })
-        console.log(setCurso)
+      
        }
     function salvar (){
         const metodo = curso.id? 'put':'post';
         const url = curso.id ? `${urlAPI}/${curso.id}`: urlAPI
         curso.codCurso = Number(curso.codCurso);
-     
+     console.log(curso)
         axios[metodo](url,curso)
         .then((resp) =>{
             const lista = getListaAtualizada(resp.data)
-          setCurso({curso:initialState.curso,lista})
+          setCurso(initialState.curso)
           setLista(lista)
         })     
     }
-const  getListaAtualizada = (curso, add = true)=> {
+
+function  getListaAtualizada  (curso, add = true) {
       const   listas = lista.filter(a => a.id !== curso.id);
         if(add) listas.unshift(curso);
         return listas;
@@ -61,7 +65,7 @@ const  getListaAtualizada = (curso, add = true)=> {
        
     }
     
- const remover = (curso)=>{
+ function remover  (curso) {
     const url = urlAPI + "/"+ curso.id;
     if(window.confirm("Confirma remoção do curso:" + curso.nomeCurso)){
         console.log("entrou no confirm");
@@ -69,7 +73,8 @@ const  getListaAtualizada = (curso, add = true)=> {
         axios['delete'](url,curso)
         .then(resp =>{
             const lista = getListaAtualizada(curso,false)
-            setCurso({curso:initialState.curso,lista})
+            setCurso(initialState.curso)
+            setLista(lista)
         })
     }
   }
@@ -79,10 +84,10 @@ const  getListaAtualizada = (curso, add = true)=> {
           <label> Nome: </label>
           <input
            type ="text"
-           id="nome"
+           id="nomeCurso"
             placeholder ="Nome do Curso"
             className ="form-input"
-            name = "nome"
+            name = "nomeCurso"
             value={curso.nomeCurso}
             onChange={e =>atualizaCampo(e)}              
             />
@@ -137,12 +142,12 @@ const renderTable =()  =>{
                  <td>{curso.periodo}</td>
                  <td>{curso.codCurso}</td>
                   <td>
-                    <button onClick={() => carregar(curso)}>
+                    <button className='btnAlterar' onClick={() => carregar(curso)}>
                         Alterar
                     </button>
                   </td>
                   <td>
-                    <button onClick={() =>remover(curso)}>
+                    <button  className = 'btnRemover' onClick={() =>remover(curso)}>
                         Remover
                     </button>
                   </td>
