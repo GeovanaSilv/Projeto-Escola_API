@@ -3,12 +3,16 @@ import axios from 'axios';
 import './CrudAluno.css';
 import Main from '../template/Main';
 
+
 const title ="Cadastro de Alunos";
 
 const urlAPI = "http://localhost:5278/api/Aluno";
+const urlAPICurso = "http://localhost:5278/api/Curso";
 const initialState ={
     aluno: {id:0,ra:'',nome:'',codCurso:0},
-    lista:[]
+    lista:[],
+    listaCurso:[]
+         
 }
 
 
@@ -18,7 +22,11 @@ export default class CrudAluno extends Component{
     axios(urlAPI).then(resp =>{
         this.setState({lista: resp.data})
     })
+    axios(urlAPICurso).then(resp=>{
+           this.setState({listaCurso:resp.data})
+    })
    }
+
    limpar(){
     this.setState({aluno : initialState.aluno});
    }
@@ -72,8 +80,7 @@ this.atualizaCampo(aluno);
         })
     }
   }
-
-
+  
     renderForm(){
         return(
             <div  className="inclui-alunos">
@@ -98,16 +105,24 @@ this.atualizaCampo(aluno);
                 value={this.state.aluno.nome}
                 onChange={e => this.atualizaCampo(e)}
                />
-               <label>Código do Curso</label>
-               <input
-                 type= "number"
-                 id="codCurso"
-                 placeholder="0"
-                 className="form-input"
-                 name="codCurso"
-                 value={this.state.aluno.codCurso}
-                 onChange={e => this.atualizaCampo(e)}
-                 />
+
+               <label>Curso</label>
+                < select name = "codCurso" onChange={e=>{this.atualizaCampo(e)}}>
+                    {this.state.listaCurso.map((curso)=>
+                   
+               <option name = "codCurso"
+                   value={curso.codCurso}
+               >
+                {curso.nomeCurso}
+                </option> 
+                    )}
+                 </select>
+                
+                
+            
+
+
+             
                 <button className="btnSalvar"
                 onClick={e => this.salvar(e)}
                 >Salvar 

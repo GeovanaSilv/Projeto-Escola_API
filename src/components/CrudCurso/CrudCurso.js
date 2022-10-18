@@ -10,7 +10,7 @@ const title ="Cadastro de Curso";
 const urlAPI ="http://localhost:5278/api/Curso";
 
 const initialState={
-    curso:{id:0, nomeCurso:'',codCurso:0,periodo:''},
+    curso:{id:5, nomeCurso:'',codCurso:0,periodo:''},
    lista:[]
 }
 
