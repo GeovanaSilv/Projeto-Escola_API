@@ -3,6 +3,7 @@ import {Routes,Route} from "react-router-dom";
 import Main from './components/template/Main';
 import CrudAluno from "./components/CrudAluno/CrudAluno";
 import CrudCurso from "./components/CrudCurso/CrudCurso";
+import CrudCarometro from "./components/CrudCarometro/CrudCarometro";
 
 export default function Rotas(){
     return(
@@ -27,12 +28,10 @@ export default function Rotas(){
     </Main>}
     />
 
-         <Route path ='/carometro' element={
-           <Main title="Carometro">
-               <div>Pagina em Andamento</div>
-           </Main>
-         }/>
-         
+<Route path ='/carometro' element={<CrudCarometro/>}/>
+ <Route path ='*' element={
+            <Main title="Carometro">
+           </Main>}/>
         </Routes>
     )
 }

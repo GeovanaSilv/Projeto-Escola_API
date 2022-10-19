@@ -8,7 +8,7 @@ using ProjetoEscola_API.Models;
 
 namespace ProjetoEscola_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/api/[controller]")]
     [ApiController] 
     public class AlunoController : Controller
     {
@@ -20,8 +20,14 @@ namespace ProjetoEscola_API.Controllers
         }
         [HttpGet]
         public ActionResult<List<Aluno>> GetAll(){
-            return _context.Aluno.ToList();
+          //  if(_context.Aluno is not null ){
+               return _context.Aluno.ToList();
+       //     }else{
+           //     return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha no acesso ao banco de Dados");
+           // }
+            
         }
+       // [ActionName("AlunoId")]
         [HttpGet("{AlunoId}")]
         public ActionResult<List<Aluno>> Get (int AlunoId){
             try{

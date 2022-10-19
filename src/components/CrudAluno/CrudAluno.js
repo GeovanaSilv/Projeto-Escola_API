@@ -118,11 +118,6 @@ this.atualizaCampo(aluno);
                     )}
                  </select>
                 
-                
-            
-
-
-             
                 <button className="btnSalvar"
                 onClick={e => this.salvar(e)}
                 >Salvar 

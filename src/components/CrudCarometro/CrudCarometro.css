@@ -1,0 +1,31 @@
+.card1{
+    background-color: aqua;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    max-width: 15%;
+    align-items: center;
+    display: flex;
+    border-radius: 6px;
+}
+.card2{
+    background-color: aqua;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    max-width: 15%;
+    align-items: center;
+    display: flex;
+    border-radius: 6px;
+}
+.select{
+    margin: 20px;
+    border-radius: 5px;
+    background-color:rgb(148, 158, 229);
+    padding: 20px;
+
+}
+.img{
+    max-width: 150px;
+    align-items: center;
+
+}
+
