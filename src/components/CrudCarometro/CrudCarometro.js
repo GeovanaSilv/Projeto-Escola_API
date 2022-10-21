@@ -30,9 +30,11 @@ export default class CrudCarometro extends Component{
     }
         //PARA ALUNOS 
     getListaAtualizadaAluno(aluno, add = true, ){
-        const lista = this.state.lista.filter(a => a.id !== aluno.id);
+        const lista = this.state.lista.filter(a => a.codCurso !== this.state.curso.codCurso);
         if(add) lista.unshift(aluno);
+        this.setState(aluno);
         return lista;
+        
        }
 
        //PARA ALUNOS E CURSOS 
