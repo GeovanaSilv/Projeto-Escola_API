@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import './CrudCurso.css';
 import Main from '../template/Main';
@@ -10,7 +9,7 @@ const title ="Cadastro de Curso";
 const urlAPI ="http://localhost:5278/api/Curso";
 
 const initialState={
-    curso:{id:5, nomeCurso:'',codCurso:0,periodo:''},
+    curso:{id:0, nomeCurso:'',codCurso:0,periodo:''},
    lista:[]
 }
 
@@ -167,4 +166,3 @@ const renderTable =()  =>{
     )
 
 } 
-  

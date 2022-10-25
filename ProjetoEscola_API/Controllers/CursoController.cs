@@ -41,7 +41,7 @@ namespace ProjetoEscola_API.Controllers
             _context.Curso.Add(model);
             if(await _context.SaveChangesAsync()==1)
           {
-             return Ok();
+             //return Ok();
                return Created($"/api/curso/{model.codCurso}",model);
           
               
