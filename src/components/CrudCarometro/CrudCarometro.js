@@ -10,6 +10,7 @@ const urlAPICurso = "http://localhost:5278/api/Curso";
 
 const initialState = {
     aluno: { id: 0, ra: '', nome: '', codCurso: 0 },
+    curso:{id:0, nomeCurso:'',codCurso:0,periodo:''},
     lista: [],
     listaCarometro: [],
     listaCurso: []
@@ -29,7 +30,7 @@ export default class CrudCarometro extends Component {
     //PARA ALUNOS 
     getListaAtualizadaAluno(event) {
         const codCurso = event.target.value
-        const lista = this.state.lista.filter(a => a.codCurso !== codCurso);
+        const lista = this.state.lista.filter(a => a.codCurso == codCurso);
         //  if(add) lista.unshift(aluno);
         this.setState({ listaCarometro: lista });
         this.setState({aluno: this.state.aluno})
@@ -46,20 +47,30 @@ export default class CrudCarometro extends Component {
         this.setState({ curso });
         this.setState({ aluno });
     }
-
+     aleatorio(){
+      const  img =["0","1"]
+        img[0] = "https://cdn.vectorstock.com/i/1000x1000/35/12/bearded-happy-man-shows-thumb-up-gesture-cool-vector-33803512.webp" 
+        img[1] = "https://thumbs.dreamstime.com/b/vetor-feliz-preto-do-%C3%ADcone-das-meninas-ilustra%C3%A7%C3%A3o-do-%C3%ADcone-da-mulher-72080931.jpg" 
+    
+        var mudar = Math.floor(Math.random()*img.length)
+        return img[mudar]
+     }
 
     renderForm() {
         return (
             <div className="select ">
                 <label>Selecione um curso</label>
-                < select name="codCurso" onChange={e => { this.getListaAtualizadaAluno(e) }}>
+               < select name="codCurso" value ={this.state.codCurso} onChange={e => { this.getListaAtualizadaAluno(e) }}>
+                        <option value="" >
+                            Escolha um curso 
+                            </option>                
                     {this.state.listaCurso.map((curso) =>
 
                         <option name="codCurso"
                             value={curso.codCurso}
                         >
                             {curso.nomeCurso}
-                        </option>
+                        </option> 
                     )}
                 </select>
             </div>
@@ -67,32 +78,22 @@ export default class CrudCarometro extends Component {
     }
     renderCards() {
         return (
-            <div className="cards">
-                {console.log(this.state.listaCarometro)}
-                {this.state.listaCarometro.map((aluno) => {
-                    { console.log(aluno.id+' '+aluno) }
-                   /*    <div key={aluno.id} className="card draw-border">
-                    <img  className="card__image" src={`https://avatars.dicebear.com/api/big-smile/a.svg`} alt={`Avatar de `+ aluno.nome}/>
-                    <span className="card-title">{aluno.nome}</span>
-                    <span className="card-description">RA: {aluno.ra} | Curso: {aluno.codCurso}</span>
-                </div>*/
-                    <div className="card2" key={aluno.id} sx={{ minWidth: 275 }}>
-                        <span>Aqui</span>
-                        <img className="img" src="https://cdn.vectorstock.com/i/1000x1000/35/12/bearded-happy-man-shows-thumb-up-gesture-cool-vector-33803512.webp" />
-                        <label>{aluno.ra}</label>
-                    </div >
-                })}
+          
                 <div className="card2">
-                        {this.state.listaCarometro.map((aluno)=>{
-                         
-                        })}
-           
- 
-
+                
+               {this.state.listaCarometro.map((aluno) => 
+                  <div key={aluno.id}className="cardInfo"  sx={{ minWidth: 300 }}>
+                    <img className  = "img"src={this.aleatorio()}/>
+                  <span>RA:   {aluno.ra}</span>
+                  <span>Nome : {aluno.nome}</span>
+                 <span>Curso : {aluno.codCurso}</span>
+               
+              </div >
+                )}  
                 </div>
-                <br />
+            
 
-            </div>
+        
         )
     }
 

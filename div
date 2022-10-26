@@ -1,0 +1,28 @@
+  <div className="cards">
+               
+                {this.state.listaCarometro.map((aluno) => {
+                /*    { console.log(aluno.id+' '+aluno) }
+                 
+                    <img  className="card__image" src={`https://avatars.dicebear.com/api/big-smile/a.svg`} alt={`Avatar de `+ aluno.nome}/>
+                    
+                
+                    </div>
+                */
+                  /*  <div className="card2" key={aluno.id} sx={{ minWidth: 275 }}>
+                        <span>Aqui</span>
+                       
+                        <label>{aluno.ra}</label>
+                    </div >
+                    */
+                })}
+                <div className="card2" >
+                <div className="card draw-border">
+                <img className="img" src="https://cdn.vectorstock.com/i/1000x1000/35/12/bearded-happy-man-shows-thumb-up-gesture-cool-vector-33803512.webp" width={80}/>
+             <span className=" card-title">Everton</span>
+             <span  className=" card-descrição">RA:21463</span>
+             <span>Curso:Informatica</span>
+                      </div>
+                </div>
+            </div>
+        )
+    }
